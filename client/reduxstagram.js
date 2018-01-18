@@ -6,12 +6,23 @@ import ReactDOM from 'react-dom';
 import css from './styles/style.styl'; //no need to link in html. Webpack does it.
 
 //Import Components
-import Main from './components/main';
+import Main from './components/Main';
+import Single from './components/Single';
+import PhotoGrid from './components/PhotoGrid';
 
+//Import router
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-ReactDOM.render(
-  <Main />,
-  document.getElementById('root')
-);
+//Render either PhotoGrid or Single, both a children of the Main.
+//BrowserHistory allows back button to be used
+//Index route is / and nested route is one level deeper
+const router = (
+  <Router history={browserHistory}>
+    <Route path="/" component={Main}>
+      <IndexRoute component={PhotoGrid}></IndexRoute>
+      <Route path="/view/:postId" component={Single}></Route>
+    </Route>
+  </Router>
+)
 
-// OR render(<Main/>, document.getElementById('root'));
+ReactDOM.render(router, document.getElementById('root'));
