@@ -12,6 +12,10 @@ import PhotoGrid from './components/PhotoGrid';
 
 //Import router
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+// Allows redux to be used with react
+import { Provider } from 'react-redux';
+import store, { history } from './store.js';
+
 
 //Render either PhotoGrid or Single, both a children of the Main.
 //BrowserHistory allows back button to be used
