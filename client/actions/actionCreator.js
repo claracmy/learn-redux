@@ -11,15 +11,16 @@ export function addComment(postId, author, comment) {
   return {
     type: 'ADD_COMMENT',
     postId,
+    author,
     comment
   }
 }
 
 // Delete Comments
-export function deleteComment(postId, index) {
+export function deleteComment(postId, i) {
   return {
     type: 'DELETE_COMMENT',
     postId,
-    index
+    i
   }
 }

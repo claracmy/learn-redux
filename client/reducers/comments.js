@@ -1,5 +1,34 @@
+function postComments(state = [], action) {
+  switch(action.type){
+    case 'ADD_COMMENT':
+      //return the new state with the new comment
+      return [...state, {
+        user: action.author,
+        text: action.comment
+      }];
+    case 'DELETE_COMMENT':
+      //return the new state without the deleted comment
+      return [
+        // return everythin from the start to the one we want to delete
+        ...state.slice(0, action.i),
+        // return everything after the deleted one to the end
+        ...state.slice(action.i + 1)
+      ]
+    default:
+      return state;
+  }
+  return state;
+}
+
 function comments(state = [], action) {
-  console.log(state, action);
+  if(typeof action.postId !== 'undefined') {
+    return {
+      // take curent state
+      ...state,
+      // overwrite this post with a new one, pass in one comment array and the
+      [action.postId]: postComments(state[action.postId], action)
+    }
+  }
   return state;
 }
 
